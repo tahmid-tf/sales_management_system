@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Profile\UserProfileController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,18 +11,30 @@ Route::get('/', function () {
 // ---------------------------- Test route ----------------------------
 
 
-Route::get('panel', function () {
-    return view('panel.master.master');
-});
-
-
-// ---------------------------- Admin panel route redirects ----------------------------
+// ----------------------------------------------- panel route redirects -----------------------------------------------
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+
+//    ------------------- admin dashboard -------------------
+
+    if (auth()->user()->user_role == 'admin') {
+        return view('panel.admin.dashboard');
+    } else {
+        abort(404);
+    }
+
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// ---------------------------- Admin panel route redirects ----------------------------
+// ----------------------------------------------- panel route redirects -----------------------------------------------
+
+// ----------------------------------------------- profile routes ------------------------------------------------------
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('user_profile', [UserProfileController::class, 'index'])->name('view_profile');
+    Route::post('user_profile', [UserProfileController::class, 'store'])->name('store_profile');
+});
+
+// ----------------------------------------------- profile routes ------------------------------------------------------
 
 
 Route::middleware('auth')->group(function () {
@@ -31,6 +44,4 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
