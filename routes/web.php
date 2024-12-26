@@ -32,6 +32,7 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('user_profile', [UserProfileController::class, 'index'])->name('view_profile');
     Route::post('user_profile', [UserProfileController::class, 'store'])->name('store_profile');
+    Route::put('user_profile/update', [UserProfileController::class, 'update'])->name('update_profile');
 });
 
 // ----------------------------------------------- profile routes ------------------------------------------------------
