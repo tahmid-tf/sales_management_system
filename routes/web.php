@@ -10,6 +10,9 @@ Route::get('/', function () {
 
 // ---------------------------- Test route ----------------------------
 
+Route::get('category_page', function (){
+//    return view('panel.admin.categories.create');
+});
 
 // ----------------------------------------------- panel route redirects -----------------------------------------------
 
@@ -46,3 +49,6 @@ Route::middleware('auth')->group(function () {
 
 
 require __DIR__ . '/auth.php';
+
+// --------------------------------- Admin Routes ---------------------------------
+require __DIR__ . '/admin.php';

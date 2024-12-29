@@ -1,6 +1,8 @@
 <!-- Sidenav Heading (UI Toolkit)-->
-<div class="sidenav-menu-heading">UI Toolkit</div>
-<!-- Sidenav Accordion (Utilities)-->
+<div class="sidenav-menu-heading">Functions</div>
+
+{{-- ---------------------------------------------------- Products ---------------------------------------------------- --}}
+
 <a
     class="nav-link collapsed"
     href="javascript:void(0);"
@@ -10,7 +12,7 @@
     aria-controls="collapseUtilities"
 >
     <div class="nav-link-icon"><i data-feather="tool"></i></div>
-    Utilities
+    Products
     <div class="sidenav-collapse-arrow">
         <i class="fas fa-angle-down"></i>
     </div>
@@ -21,11 +23,41 @@
     data-bs-parent="#accordionSidenav"
 >
     <nav class="sidenav-menu-nested nav">
-        <a class="nav-link" href="animations.html">Animations</a>
-        <a class="nav-link" href="background.html">Background</a>
+        <a class="nav-link" href="#!">Add Products</a>
+        <a class="nav-link" href="#!">View All Products</a>
     </nav>
 </div>
-<!-- Sidenav Heading (Addons)-->
+
+
+{{-- ---------------------------------------------------- Categories ---------------------------------------------------- --}}
+
+<a
+    class="nav-link collapsed"
+    href="javascript:void(0);"
+    data-bs-toggle="collapse"
+    data-bs-target="#collapseCategories"
+    aria-expanded="false"
+    aria-controls="collapseCategories"
+>
+    <div class="nav-link-icon"><i data-feather="tool"></i></div>
+    Categories
+    <div class="sidenav-collapse-arrow">
+        <i class="fas fa-angle-down"></i>
+    </div>
+</a>
+<div
+    class="collapse"
+    id="collapseCategories"
+    data-bs-parent="#accordionSidenav"
+>
+    <nav class="sidenav-menu-nested nav">
+        <a class="nav-link" href="#!">Add Categories</a>
+        <a class="nav-link" href="#!">View All Categories</a>
+    </nav>
+</div>
+
+{{-- ---------------------------------------------------- Account Settings ---------------------------------------------------- --}}
+
 <div class="sidenav-menu-heading">Profile</div>
 <!-- Sidenav Link (Charts)-->
 <a class="nav-link" href="{{ route('view_profile') }}">
