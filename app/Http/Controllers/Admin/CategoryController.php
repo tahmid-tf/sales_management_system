@@ -60,9 +60,19 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request)
     {
-        //
+
+        $input = $request->validate([
+            'id' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $category = Category::find($input['id']);
+        $category->where('id', $input['id'])->update(['name' => $input['name'], 'description' => $input['description']]);
+        session()->flash('update', 'Category updated successfully.');
+        return redirect()->back();
     }
 
     /**
