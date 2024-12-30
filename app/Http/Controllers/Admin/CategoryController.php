@@ -70,6 +70,11 @@ class CategoryController extends Controller
         ]);
 
         $category = Category::find($input['id']);
+
+        if (!$category) {
+            return "Category not found";
+        }
+
         $category->where('id', $input['id'])->update(['name' => $input['name'], 'description' => $input['description']]);
         session()->flash('update', 'Category updated successfully.');
         return redirect()->back();

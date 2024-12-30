@@ -10,9 +10,6 @@ Route::get('/', function () {
 
 // ---------------------------- Test route ----------------------------
 
-Route::get('category_page', function (){
-//    return view('panel.admin.categories.create');
-});
 
 // ----------------------------------------------- panel route redirects -----------------------------------------------
 

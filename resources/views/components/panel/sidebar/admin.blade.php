@@ -23,8 +23,7 @@
     data-bs-parent="#accordionSidenav"
 >
     <nav class="sidenav-menu-nested nav">
-        <a class="nav-link" href="#!">Add Products</a>
-        <a class="nav-link" href="#!">View All Products</a>
+        <a class="nav-link" href="{{ route('products.index') }}">Add & View Products</a>
     </nav>
 </div>
 
@@ -51,8 +50,7 @@
     data-bs-parent="#accordionSidenav"
 >
     <nav class="sidenav-menu-nested nav">
-        <a class="nav-link" href="#!">Add Categories</a>
-        <a class="nav-link" href="#!">View All Categories</a>
+        <a class="nav-link" href="{{ route('categories.index') }}">Add & view Categories</a>
     </nav>
 </div>
 
