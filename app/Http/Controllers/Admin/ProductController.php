@@ -16,7 +16,7 @@ class ProductController extends Controller
     {
         $products = Product::all();
         $categories = Category::all();
-        return view('panel.admin.products.create', compact('products','categories'));
+        return view('panel.admin.products.create', compact('products', 'categories'));
     }
 
     /**
@@ -36,7 +36,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'sku' => 'required|string', // Assuming SKU should be unique
             'description' => 'required|string',
-            'price' => 'required|integer', // Ensuring price is an integer and non-negative
+            'price' => 'required|numeric', // Ensuring price is an integer and non-negative
             'stock' => 'required|integer', // Ensuring stock is an integer and non-negative
             'category_id' => 'required|integer', // Ensuring category_id is valid
         ]);
@@ -71,7 +71,22 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $input = $request->validate([
+            'name' => 'required|string|max:255',
+            'sku' => 'required|string', // Assuming SKU should be unique
+            'description' => 'required|string',
+            'price' => 'required|numeric', // Ensuring price is an integer and non-negative
+            'stock' => 'required|integer', // Ensuring stock is an integer and non-negative
+            'category_id' => 'required|integer', // Ensuring category_id is valid
+        ]);
+
+        if (Category::find($input['category_id']) == null) {
+            return "Category not found";
+        }
+
+        $product->update($input);
+        session()->flash('message', 'Product updated successfully.');
+        return redirect()->back();
     }
 
     /**
@@ -79,6 +94,23 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        session()->flash('delete', 'Product deleted successfully.');
+        return redirect()->back();
     }
+
+    public function bulkDestroy(Request $request)
+    {
+
+        $ids = explode(',', $request->input('ids'));
+
+
+        try {
+            Product::whereIn('id', $ids)->delete();
+            return redirect()->back()->with('delete', 'Selected products deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('delete', 'Failed to delete the selected products.');
+        }
+    }
+
 }

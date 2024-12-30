@@ -15,4 +15,6 @@ Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->group(func
 // -------------------------------- Create Products --------------------------------
 
     Route::resource('products', ProductController::class);
+    Route::delete('product/bulk-delete', [ProductController::class, 'bulkDestroy'])->name('products.bulk-delete');
 });
+
