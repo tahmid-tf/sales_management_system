@@ -3,6 +3,7 @@
 use App\Http\Controllers\Profile\UserProfileController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PermissionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,17 +14,8 @@ Route::get('/', function () {
 
 // ----------------------------------------------- panel route redirects -----------------------------------------------
 
-Route::get('/dashboard', function () {
-
-//    ------------------- admin dashboard -------------------
-
-    if (auth()->user()->user_role == 'admin') {
-        return view('panel.admin.dashboard');
-    } else {
-        abort(404);
-    }
-
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [PermissionController::class, 'permission'])->middleware(['auth'])->name('dashboard');
+Route::get('/logout', [PermissionController::class, 'logout'])->name('logout')->middleware(['auth']);
 
 // ----------------------------------------------- panel route redirects -----------------------------------------------
 
@@ -48,4 +40,8 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 // --------------------------------- Admin Routes ---------------------------------
-require __DIR__ . '/admin.php';
+require __DIR__ . '/admin/admin.php';
+// --------------------------------- Manager Routes ---------------------------------
+require __DIR__ . '/manager/manager.php';
+// --------------------------------- Manager Routes ---------------------------------
+require __DIR__ . '/staff/staff.php';
