@@ -341,7 +341,7 @@
                     </div>
                     Account
                 </a>
-                <a class="dropdown-item" href="{{ route('logout') }}">
+                <a class="dropdown-item" href="{{ route('log_out') }}">
                     <div class="dropdown-item-icon">
                         <i data-feather="log-out"></i>
                     </div>

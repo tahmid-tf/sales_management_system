@@ -15,7 +15,7 @@ Route::get('/', function () {
 // ----------------------------------------------- panel route redirects -----------------------------------------------
 
 Route::get('/dashboard', [PermissionController::class, 'permission'])->middleware(['auth'])->name('dashboard');
-Route::get('/logout', [PermissionController::class, 'logout'])->name('logout')->middleware(['auth']);
+Route::get('/logout', [PermissionController::class, 'logout'])->name('log_out')->middleware(['auth']);
 
 // ----------------------------------------------- panel route redirects -----------------------------------------------
 
