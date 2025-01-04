@@ -23,109 +23,6 @@
                 </div>
             </div>
         </header>
-        <!-- Main page content-->
-        <div class="container-xl px-4 mt-4">
-            <!-- Account page navigation-->
-            <div class="row">
-                <div class="col-xl-12">
-                    <!-- Account details card-->
-                    <div class="card mb-4">
-                        <div class="card-header">Inventory Settings</div>
-
-                        {{-- ------------- Store Inventory info ------------- --}}
-
-                        <div class="card-body">
-
-
-                            @if(session('success'))
-                                <div class="alert alert-success">{{ session('success') }}</div>
-                            @endif
-
-                            @if(session('warning'))
-                                <div class="alert alert-warning">{{ session('warning') }}</div>
-                            @endif
-
-
-                            <form action="{{ route('inventories.store') }}" method="post" enctype="multipart/form-data">
-
-                                {{ csrf_field() }}
-
-                                <!-- Form Row-->
-                                <div class="row">
-
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="inputFirstName"
-                                        >Product Name</label
-                                        >
-
-                                        <select class="form-select" name="product_id">
-                                            @foreach($products as $product)
-                                                <option value="{{ $product->id }}">{{ $product->name }}</option>
-                                            @endforeach
-                                        </select>
-
-                                        <br>
-                                        @error('product_id')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="inputFirstName"
-                                        >WareHouse Name</label
-                                        >
-
-                                        <select class="form-select" name="warehouse_id">
-                                            @foreach($warehouses as $warehouse)
-                                                <option value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
-                                            @endforeach
-                                        </select>
-
-                                        <br>
-                                        @error('warehouse_id')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="inputFirstName"
-                                        >Quantity</label
-                                        >
-                                        <input
-                                            class="form-control"
-                                            id="inputFirstName"
-                                            type="number"
-                                            placeholder="Enter Quantity"
-                                            name="quantity"
-                                            value="{{ old('quantity') }}"
-                                        />
-
-                                        <br>
-                                        @error('quantity')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-
-                                    </div>
-
-
-                                </div>
-
-
-                                <!-- Save changes button-->
-                                <button class="btn btn-primary" type="submit">
-                                    Save changes
-                                </button>
-                            </form>
-
-                            {{-- ------------- Store Inventory info ------------- --}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="container-xl px-4 mt-2">
             <!-- Account page navigation-->
@@ -158,8 +55,6 @@
                                     <th>Quantity</th>
                                     <th>Date</th>
                                     <th>Update</th>
-                                    <th>Delete</th>
-
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -186,15 +81,6 @@
                                             </button>
                                         </td>
 
-                                        <td>
-                                            <button
-                                                class="btn btn-danger delete-btn"
-                                                data-id="{{ $inventory->id }}"
-                                                data-toggle="modal"
-                                                data-target="#deleteModal">
-                                                Delete
-                                            </button>
-                                        </td>
                                     </tr>
 
                                 @endforeach
@@ -205,7 +91,7 @@
                             </table>
                         </div>
 
-                        {{--  -------------------------------------------- Category Update -------------------------------------------- --}}
+                        {{--  -------------------------------------------- Inventory Update -------------------------------------------- --}}
 
                         <!-- Update Inventory Modal -->
                         <div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
@@ -281,61 +167,12 @@
                                 $('#quantity').val(quantity);
 
                                 // Update the form's action URL dynamically
-                                $('#update-form').attr('action', '/admin/inventories/' + id);
+                                $('#update-form').attr('action', '/manager/inventory/' + id);
                             });
 
                         </script>
 
-                        {{--  -------------------------------------------- Category Update -------------------------------------------- --}}
-
-                        {{--  -------------------------------------------- Category Delete -------------------------------------------- --}}
-
-                        <!-- Delete Supplier Modal -->
-                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
-                             aria-labelledby="deleteModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <form id="delete-form" method="post">
-                                        {{ csrf_field() }}
-                                        @method('delete')
-                                        <div class="modal-body">
-                                            <p>Are you sure you want to delete this supplier?</p>
-                                            <p><strong id="supplier-name-delete"></strong></p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                Cancel
-                                            </button>
-                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        <script>
-                            $(document).on('click', '.delete-btn', function () {
-                                // Retrieve data attributes from the button
-                                const id = $(this).data('id');
-                                const name = $(this).data('name');
-
-                                // Set the supplier name in the modal for confirmation
-                                $('#supplier-name-delete').text(name);
-
-                                // Dynamically set the action URL for the delete form
-                                $('#delete-form').attr('action', '/admin/inventories/' + id);
-                            });
-
-                        </script>
-
-
-                        {{--  -------------------------------------------- Category Delete -------------------------------------------- --}}
+                        {{--  -------------------------------------------- Inventory Update -------------------------------------------- --}}
 
 
                     </div>

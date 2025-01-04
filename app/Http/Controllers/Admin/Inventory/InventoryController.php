@@ -54,16 +54,7 @@ class InventoryController extends Controller
         if (!$warehouse) {
             return "Warehouse not found";
         }
-
-        // Check if the product already exists in any warehouse
-        $exists = Inventory::where('product_id', $input['product_id'])->exists();
-
-        if ($exists) {
-            session()->flash('warning', 'This product already exists in another warehouse.');
-            return redirect()->back();
-        }
-
-
+        
         Inventory::create($input);
         session()->flash('success', 'Inventory created successfully.');
         return redirect()->back();
@@ -105,14 +96,6 @@ class InventoryController extends Controller
             'quantity' => 'required|numeric|min:1',
         ]);
 
-        // Check if the product exists in another warehouse
-        $exists = Inventory::where('product_id', $input['product_id'])
-            ->where('id', '!=', $id) // Exclude the current inventory record
-            ->exists();
-
-        if ($exists) {
-            return redirect()->back()->withErrors(['error' => 'This product already exists in another warehouse.']);
-        }
 
         // Update the inventory record
         $inventory->update($input);

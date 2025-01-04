@@ -330,17 +330,17 @@
                         src="{{ asset('assets/img/illustrations/profiles/profile-1.png') }}"
                     />
                     <div class="dropdown-user-details">
-                        <div class="dropdown-user-details-name">Valerie Luna</div>
-                        <div class="dropdown-user-details-email">vluna@aol.com</div>
+                        <div class="dropdown-user-details-name">{{ auth()->user()->name ?? '' }}</div>
+                        <div class="dropdown-user-details-email">{{ auth()->user()->email ?? '' }}</div>
                     </div>
                 </h6>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#!">
-                    <div class="dropdown-item-icon">
-                        <i data-feather="settings"></i>
-                    </div>
-                    Account
-                </a>
+                {{--                <a class="dropdown-item" href="#!">--}}
+                {{--                    <div class="dropdown-item-icon">--}}
+                {{--                        <i data-feather="settings"></i>--}}
+                {{--                    </div>--}}
+                {{--                    Account--}}
+                {{--                </a>--}}
                 <a class="dropdown-item" href="{{ route('log_out') }}">
                     <div class="dropdown-item-icon">
                         <i data-feather="log-out"></i>
@@ -408,7 +408,8 @@
             <div class="sidenav-footer">
                 <div class="sidenav-footer-content">
                     <div class="sidenav-footer-subtitle">Logged in as:</div>
-                    <div class="sidenav-footer-title">Admin</div>
+                    <div class="sidenav-footer-title">{{ auth()->user()->name ?? '' }}
+                        - {{ \Illuminate\Support\Str::ucfirst(auth()->user()->user_role) ?? '' }}</div>
                 </div>
             </div>
         </nav>

@@ -1,5 +1,5 @@
 <!-- Sidenav Heading (UI Toolkit)-->
-<div class="sidenav-menu-heading">Functions</div>
+<div class="sidenav-menu-heading">Category & Products</div>
 
 {{-- ---------------------------------------------------- Categories ---------------------------------------------------- --}}
 
@@ -59,6 +59,32 @@
 <!-- Sidenav Heading (UI Toolkit)-->
 <div class="sidenav-menu-heading">Inventory Management</div>
 
+{{-- ---------------------------------------------------- Supplier ---------------------------------------------------- --}}
+
+<a
+    class="nav-link collapsed"
+    href="javascript:void(0);"
+    data-bs-toggle="collapse"
+    data-bs-target="#collapseSupplier"
+    aria-expanded="false"
+    aria-controls="collapseSupplier"
+>
+    <div class="nav-link-icon"><i data-feather="tool"></i></div>
+    Suppliers
+    <div class="sidenav-collapse-arrow">
+        <i class="fas fa-angle-down"></i>
+    </div>
+</a>
+<div
+    class="collapse"
+    id="collapseSupplier"
+    data-bs-parent="#accordionSidenav"
+>
+    <nav class="sidenav-menu-nested nav">
+        <a class="nav-link" href="{{ route('suppliers.index') }}">Add & view Suppliers</a>
+    </nav>
+</div>
+
 {{-- ---------------------------------------------------- Warehouse ---------------------------------------------------- --}}
 
 <a
@@ -85,32 +111,6 @@
     </nav>
 </div>
 
-
-{{-- ---------------------------------------------------- Supplier ---------------------------------------------------- --}}
-
-<a
-    class="nav-link collapsed"
-    href="javascript:void(0);"
-    data-bs-toggle="collapse"
-    data-bs-target="#collapseSupplier"
-    aria-expanded="false"
-    aria-controls="collapseSupplier"
->
-    <div class="nav-link-icon"><i data-feather="tool"></i></div>
-    Suppliers
-    <div class="sidenav-collapse-arrow">
-        <i class="fas fa-angle-down"></i>
-    </div>
-</a>
-<div
-    class="collapse"
-    id="collapseSupplier"
-    data-bs-parent="#accordionSidenav"
->
-    <nav class="sidenav-menu-nested nav">
-        <a class="nav-link" href="{{ route('suppliers.index') }}">Add & view Suppliers</a>
-    </nav>
-</div>
 
 {{-- ---------------------------------------------------- Inventory ---------------------------------------------------- --}}
 

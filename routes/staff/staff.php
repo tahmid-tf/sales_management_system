@@ -4,6 +4,7 @@ use App\Http\Controllers\Staff\ProductController;
 use App\Http\Controllers\Staff\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\StaffMiddleware;
+use App\Http\Controllers\Staff\Inventory\InventoryController;
 
 Route::middleware(['auth', StaffMiddleware::class])->prefix('staff')->group(function () {
 
@@ -15,5 +16,10 @@ Route::middleware(['auth', StaffMiddleware::class])->prefix('staff')->group(func
     // -------------------------------- Manage Categories --------------------------------
 
     Route::get('categories', [CategoryController::class, 'index'])->name('staff.category.index');
+
+    // -------------------------------- Inventory Settings - Inventory --------------------------------
+
+    Route::get('inventory', [InventoryController::class, 'index'])->name('staff.inventory.index');
+    Route::put('inventory/{id}', [InventoryController::class, 'update'])->name('staff.inventory.update');
 
 });

@@ -16,7 +16,7 @@
                                 <div class="page-header-icon">
                                     <i data-feather="user"></i>
                                 </div>
-                                Inventory Settings
+                                Supplier Settings
                             </h1>
                         </div>
                     </div>
@@ -30,23 +30,18 @@
                 <div class="col-xl-12">
                     <!-- Account details card-->
                     <div class="card mb-4">
-                        <div class="card-header">Inventory Settings</div>
+                        <div class="card-header">Supplier Settings</div>
 
-                        {{-- ------------- Store Inventory info ------------- --}}
+                        {{-- ------------- Store profile form ------------- --}}
 
                         <div class="card-body">
 
 
-                            @if(session('success'))
-                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @if(session('message'))
+                                <div class="alert alert-success">{{ session('message') }}</div>
                             @endif
 
-                            @if(session('warning'))
-                                <div class="alert alert-warning">{{ session('warning') }}</div>
-                            @endif
-
-
-                            <form action="{{ route('inventories.store') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('suppliers.store') }}" method="post" enctype="multipart/form-data">
 
                                 {{ csrf_field() }}
 
@@ -55,61 +50,100 @@
 
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputFirstName"
-                                        >Product Name</label
-                                        >
-
-                                        <select class="form-select" name="product_id">
-                                            @foreach($products as $product)
-                                                <option value="{{ $product->id }}">{{ $product->name }}</option>
-                                            @endforeach
-                                        </select>
-
-                                        <br>
-                                        @error('product_id')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="inputFirstName"
-                                        >WareHouse Name</label
-                                        >
-
-                                        <select class="form-select" name="warehouse_id">
-                                            @foreach($warehouses as $warehouse)
-                                                <option value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
-                                            @endforeach
-                                        </select>
-
-                                        <br>
-                                        @error('warehouse_id')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="inputFirstName"
-                                        >Quantity</label
+                                        >Supplier Name</label
                                         >
                                         <input
                                             class="form-control"
                                             id="inputFirstName"
-                                            type="number"
-                                            placeholder="Enter Quantity"
-                                            name="quantity"
-                                            value="{{ old('quantity') }}"
+                                            type="text"
+                                            placeholder="Enter Warehouse Name"
+                                            name="name"
+                                            value="{{ old('name') }}"
                                         />
 
                                         <br>
-                                        @error('quantity')
+                                        @error('name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
 
                                     </div>
 
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputLastName"
+                                        >Suppliers Contact</label
+                                        >
+                                        <input
+                                            class="form-control"
+                                            id="inputLastName"
+                                            type="text"
+                                            placeholder="Enter Suppliers Contact Info"
+                                            name="contact"
+                                            value="{{ old('contact') }}"
+                                        />
 
+                                        <br>
+                                        @error('contact')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputLastName"
+                                        >Suppliers Email</label
+                                        >
+                                        <input
+                                            class="form-control"
+                                            id="inputLastName"
+                                            type="email"
+                                            placeholder="Enter Suppliers Email Info"
+                                            name="email"
+                                            value="{{ old('email') }}"
+                                        />
+
+                                        <br>
+                                        @error('email')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputLastName"
+                                        >Suppliers Phone</label
+                                        >
+                                        <input
+                                            class="form-control"
+                                            id="inputLastName"
+                                            type="text"
+                                            placeholder="Enter Suppliers Phone No"
+                                            name="phone"
+                                            value="{{ old('phone') }}"
+                                        />
+
+                                        <br>
+                                        @error('phone')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label class="small mb-1" for="inputLastName"
+                                        >Suppliers Address</label
+                                        >
+                                        <input
+                                            class="form-control"
+                                            id="inputLastName"
+                                            type="text"
+                                            placeholder="Enter Suppliers Address"
+                                            name="address"
+                                            value="{{ old('address') }}"
+                                        />
+
+                                        <br>
+
+                                        @error('address')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
 
 
@@ -119,7 +153,7 @@
                                 </button>
                             </form>
 
-                            {{-- ------------- Store Inventory info ------------- --}}
+                            {{-- ------------- Store profile form ------------- --}}
 
                         </div>
                     </div>
@@ -133,7 +167,7 @@
                 <div class="col-xl-12">
                     <!-- Account details card-->
                     <div class="card mb-4">
-                        <div class="card-header">View Inventory</div>
+                        <div class="card-header">View Categories</div>
 
 
                         {{-- --------------------------- table --------------------------- --}}
@@ -152,10 +186,11 @@
                             <table id="datatablesSimple">
                                 <thead>
                                 <tr>
-                                    <th>Serial</th>
-                                    <th>Product</th>
-                                    <th>Warehouse</th>
-                                    <th>Quantity</th>
+                                    <th>Name</th>
+                                    <th>Contact</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
                                     <th>Date</th>
                                     <th>Update</th>
                                     <th>Delete</th>
@@ -164,22 +199,25 @@
                                 </thead>
                                 <tbody>
 
-                                @foreach($inventories as $inventory)
+                                @foreach($suppliers as $supplier)
 
                                     <tr>
-                                        <td>1</td>
-                                        <td>{{ \App\Models\Product::withTrashed()->find($inventory->product_id)->name ?? '' }}</td>
-                                        <td>{{ \App\Models\Inventory\Warehouse::withTrashed()->find($inventory->warehouse_id)->name ?? '' }}</td>
-                                        <td>{{ $inventory->quantity ?? '' }}</td>
-                                        <td>{{ $inventory->created_at ?? '' }}</td>
+                                        <td>{{ $supplier->name ?? '' }}</td>
+                                        <td>{{ $supplier->contact ?? '' }}</td>
+                                        <td>{{ $supplier->email ?? '' }}</td>
+                                        <td>{{ $supplier->phone ?? '' }}</td>
+                                        <td>{{ $supplier->address ?? '' }}</td>
+                                        <td>{{ $supplier->created_at ?? '' }}</td>
 
                                         <td>
                                             <button
                                                 class="btn btn-info update-btn"
-                                                data-id="{{ $inventory->id }}"
-                                                data-product_id="{{ $inventory->product_id }}"
-                                                data-warehouse_id="{{ $inventory->warehouse_id }}"
-                                                data-quantity="{{ $inventory->quantity }}"
+                                                data-id="{{ $supplier->id }}"
+                                                data-name="{{ $supplier->name }}"
+                                                data-contact="{{ $supplier->contact }}"
+                                                data-email="{{ $supplier->email }}"
+                                                data-address="{{ $supplier->address }}"
+                                                data-phone="{{ $supplier->phone }}"
                                                 data-toggle="modal"
                                                 data-target="#updateModal">
                                                 Update
@@ -189,7 +227,8 @@
                                         <td>
                                             <button
                                                 class="btn btn-danger delete-btn"
-                                                data-id="{{ $inventory->id }}"
+                                                data-id="{{ $supplier->id }}"
+                                                data-name="{{ $supplier->name }}"
                                                 data-toggle="modal"
                                                 data-target="#deleteModal">
                                                 Delete
@@ -207,13 +246,13 @@
 
                         {{--  -------------------------------------------- Category Update -------------------------------------------- --}}
 
-                        <!-- Update Inventory Modal -->
+                        <!-- Update Supplier Modal -->
                         <div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
                              aria-labelledby="updateModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="updateModalLabel">Update Inventory</h5>
+                                        <h5 class="modal-title" id="updateModalLabel">Update Supplier</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -222,36 +261,31 @@
                                         {{ csrf_field() }}
                                         @method('put')
                                         <div class="modal-body">
-                                            <input type="hidden" name="id" id="inventory-id">
-
+                                            <input type="hidden" name="id" id="supplier-id">
                                             <div class="form-group">
-                                                <label for="product-id">Product Name</label>
-                                                <select class="form-select" name="product_id" id="product-id">
-                                                    @foreach($products as $product)
-                                                        <option value="{{ $product->id }}"
-                                                            {{ $product->id == $inventory->product_id ? 'selected' : '' }}>
-                                                            {{ $product->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="warehouse-id">Warehouse Name</label>
-                                                <select class="form-select" name="warehouse_id" id="warehouse-id">
-                                                    @foreach($warehouses as $warehouse)
-                                                        <option value="{{ $warehouse->id }}"
-                                                            {{ $warehouse->id == $inventory->warehouse_id ? 'selected' : '' }}>
-                                                            {{ $warehouse->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="quantity">Quantity</label>
-                                                <input type="number" class="form-control" name="quantity" id="quantity"
+                                                <label for="supplier-name">Name</label>
+                                                <input type="text" name="name" id="supplier-name" class="form-control"
                                                        required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="supplier-contact">Contact</label>
+                                                <input type="text" name="contact" id="supplier-contact"
+                                                       class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="supplier-email">Email</label>
+                                                <input type="email" name="email" id="supplier-email"
+                                                       class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="supplier-address">Address</label>
+                                                <input type="text" name="address" id="supplier-address"
+                                                       class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="supplier-address">Phone</label>
+                                                <input type="text" name="phone" id="supplier-phone"
+                                                       class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -268,23 +302,28 @@
 
                         <script>
                             $(document).on('click', '.update-btn', function () {
-                                // Get data attributes from the clicked button
+                                // Retrieve data attributes from the button
                                 const id = $(this).data('id');
-                                const productId = $(this).data('product_id');
-                                const warehouseId = $(this).data('warehouse_id');
-                                const quantity = $(this).data('quantity');
+                                const name = $(this).data('name');
+                                const contact = $(this).data('contact');
+                                const email = $(this).data('email');
+                                const address = $(this).data('address');
+                                const phone = $(this).data('phone');
 
-                                // Populate the modal fields
-                                $('#inventory-id').val(id);
-                                $('#product-id').val(productId);
-                                $('#warehouse-id').val(warehouseId);
-                                $('#quantity').val(quantity);
+                                // Populate modal inputs with the retrieved data
+                                $('#supplier-id').val(id);
+                                $('#supplier-name').val(name);
+                                $('#supplier-contact').val(contact);
+                                $('#supplier-email').val(email);
+                                $('#supplier-address').val(address);
+                                $('#supplier-phone').val(phone);
 
-                                // Update the form's action URL dynamically
-                                $('#update-form').attr('action', '/admin/inventories/' + id);
+                                // Dynamically set the action URL for the update form
+                                $('#update-form').attr('action', '/admin/suppliers/' + id);
                             });
 
                         </script>
+
 
                         {{--  -------------------------------------------- Category Update -------------------------------------------- --}}
 
@@ -329,7 +368,7 @@
                                 $('#supplier-name-delete').text(name);
 
                                 // Dynamically set the action URL for the delete form
-                                $('#delete-form').attr('action', '/admin/inventories/' + id);
+                                $('#delete-form').attr('action', '/admin/suppliers/' + id);
                             });
 
                         </script>
