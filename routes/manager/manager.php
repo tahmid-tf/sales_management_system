@@ -5,6 +5,7 @@ use App\Http\Controllers\Manager\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\ManagerMiddleware;
 use App\Http\Controllers\Manager\Inventory\InventoryController;
+use App\Http\Controllers\Manager\Sales\WarehouseAssignToStaffController;
 
 Route::middleware(['auth', ManagerMiddleware::class])->prefix('manager')->group(function () {
 
@@ -22,5 +23,9 @@ Route::middleware(['auth', ManagerMiddleware::class])->prefix('manager')->group(
 
     Route::get('inventory', [InventoryController::class, 'index'])->name('manager.inventory.index');
     Route::put('inventory/{id}', [InventoryController::class, 'update'])->name('manager.inventory.update');
+
+    // -------------------------------- Sales - Assigning staffs to inventory --------------------------------
+
+    Route::resource('assign_staff', WarehouseAssignToStaffController::class);
 
 });

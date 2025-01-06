@@ -83,6 +83,33 @@
     </nav>
 </div>
 
+{{-- ---------------------------------------------------- Staff Management ---------------------------------------------------- --}}
+
+<div class="sidenav-menu-heading">Staff Management</div>
+
+<a
+    class="nav-link collapsed"
+    href="javascript:void(0);"
+    data-bs-toggle="collapse"
+    data-bs-target="#collapseAssignStaffToWarehouse"
+    aria-expanded="false"
+    aria-controls="collapseAssignStaffToWarehouse"
+>
+    <div class="nav-link-icon"><i data-feather="tool"></i></div>
+    Assign staff to warehouse
+    <div class="sidenav-collapse-arrow">
+        <i class="fas fa-angle-down"></i>
+    </div>
+</a>
+<div
+    class="collapse"
+    id="collapseAssignStaffToWarehouse"
+    data-bs-parent="#accordionSidenav"
+>
+    <nav class="sidenav-menu-nested nav">
+        <a class="nav-link" href="{{ route('assign_staff.index') }}">Assign</a>
+    </nav>
+</div>
 
 {{-- ---------------------------------------------------- Account Settings ---------------------------------------------------- --}}
 

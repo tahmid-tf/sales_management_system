@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-// --------------------------------- Admin Routes ---------------------------------
+// --------------------------------- Admin Routes -----------------------------------
 require __DIR__ . '/admin/admin.php';
 // --------------------------------- Manager Routes ---------------------------------
 require __DIR__ . '/manager/manager.php';
