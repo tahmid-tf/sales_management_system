@@ -138,7 +138,37 @@
     </nav>
 </div>
 
-{{-- ---------------------------------------------------- Inventory ---------------------------------------------------- --}}
+
+{{-- ---------------------------------------------------- Staff Management ---------------------------------------------------- --}}
+
+<!-- Sidenav Heading (UI Toolkit)-->
+<div class="sidenav-menu-heading">Staff Management</div>
+
+{{-- ---------------------------------------------------- View and verify staffs ---------------------------------------------------- --}}
+
+<a
+    class="nav-link collapsed"
+    href="javascript:void(0);"
+    data-bs-toggle="collapse"
+    data-bs-target="#collapseViewAndVerifyStaffs"
+    aria-expanded="false"
+    aria-controls="collapseViewAndVerifyStaffs"
+>
+    <div class="nav-link-icon"><i data-feather="tool"></i></div>
+    Staffs
+    <div class="sidenav-collapse-arrow">
+        <i class="fas fa-angle-down"></i>
+    </div>
+</a>
+<div
+    class="collapse"
+    id="collapseViewAndVerifyStaffs"
+    data-bs-parent="#accordionSidenav"
+>
+    <nav class="sidenav-menu-nested nav">
+        <a class="nav-link" href="">Staff Permission Setup</a>
+    </nav>
+</div>
 
 
 <div class="sidenav-menu-heading">Profile</div>

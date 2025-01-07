@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\Inventory\WareHouseController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\Admin\Staff\InitializeStuffController;
 
 
 Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->group(function () {
@@ -32,6 +33,10 @@ Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->group(func
 
     Route::resource('inventories', InventoryController::class);
 
+// -------------------------------- Staff Management - Staff permission setup --------------------------------
+
+    Route::get("staff_permission", [InitializeStuffController::class, 'index'])->name('staff_permission');
+    Route::put("staff_permission/{staff_id}", [InitializeStuffController::class, 'permission_setup'])->name('staff_permission.update');
 
 });
 

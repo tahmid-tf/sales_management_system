@@ -28,7 +28,6 @@ class Warehouse_assign_to_staff extends Model
 
         $warehouse = Warehouse::withTrashed()->where('id', $warehouse_assigned_state->warehouse_id)->orderBy('id', 'desc')->first()->name ?? 'Warehouse not found';
 
-
         if (!$warehouse) {
             return "Warehouse not found";
         }
