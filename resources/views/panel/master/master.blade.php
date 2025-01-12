@@ -37,6 +37,8 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"
         crossorigin="anonymous"
     ></script>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body class="nav-fixed">
 <nav

@@ -4,13 +4,18 @@ use App\Http\Controllers\Profile\UserProfileController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PermissionController;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Staff\Sales\CreateOrderController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-// ---------------------------- Test route ----------------------------
+// ---------------------------- Inventory API ----------------------------
 
+Route::middleware('auth')->group(function () {
+    Route::get('inventory_api', [CreateOrderController::class,'staff_inventory_api'])->name('inventory_api');
+});
 
 // ----------------------------------------------- panel route redirects -----------------------------------------------
 

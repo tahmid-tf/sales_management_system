@@ -5,6 +5,7 @@ use App\Http\Controllers\Staff\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\StaffMiddleware;
 use App\Http\Controllers\Staff\Inventory\InventoryController;
+use App\Http\Controllers\Staff\Sales\CreateOrderController;
 
 Route::middleware(['auth', StaffMiddleware::class])->prefix('staff')->group(function () {
 
@@ -21,5 +22,10 @@ Route::middleware(['auth', StaffMiddleware::class])->prefix('staff')->group(func
 
     Route::get('inventory', [InventoryController::class, 'index'])->name('staff.inventory.index');
     Route::put('inventory/{id}', [InventoryController::class, 'update'])->name('staff.inventory.update');
+
+    // -------------------------------- Sales - Create Order --------------------------------
+
+    Route::get('create_order',[CreateOrderController::class, 'index'])->name('staff.create_order.index');
+    Route::post('create_order',[CreateOrderController::class, 'store_staff_order'])->name('staff.store_order');
 
 });
