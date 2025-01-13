@@ -25,7 +25,12 @@ Route::middleware(['auth', StaffMiddleware::class])->prefix('staff')->group(func
 
     // -------------------------------- Sales - Create Order --------------------------------
 
-    Route::get('create_order',[CreateOrderController::class, 'index'])->name('staff.create_order.index');
-    Route::post('create_order',[CreateOrderController::class, 'store_staff_order'])->name('staff.store_order');
+    Route::get('create_order', [CreateOrderController::class, 'index'])->name('staff.create_order.index');
+    Route::post('create_order', [CreateOrderController::class, 'store_staff_order'])->name('staff.store_order');
+
+    // -------------------------------- Sales - View Orders --------------------------------
+
+    Route::get('view_orders', [CreateOrderController::class, 'view_orders'])->name('staff.view_order.index');
+    Route::get('view_invoice/{id}', [CreateOrderController::class, 'view_invoice'])->name('staff.view_invoice.index');
 
 });

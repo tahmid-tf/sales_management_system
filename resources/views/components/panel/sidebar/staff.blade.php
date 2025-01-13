@@ -112,6 +112,7 @@
 >
     <nav class="sidenav-menu-nested nav">
         <a class="nav-link" href="{{ route('staff.create_order.index') }}">Create Order</a>
+        <a class="nav-link" href="{{ route('staff.view_order.index') }}">Order List</a>
     </nav>
 </div>
 

@@ -32,12 +32,20 @@
                     <div class="card mb-4">
                         <div class="card-header">Create Order</div>
 
-
                         <div id="app" class="card-body">
-                            <form action="">
-                                <!-- Form Row-->
-                                <div class="row">
 
+
+                            @if(session('success'))
+                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
+
+                            @if(session('warning'))
+                                <div class="alert alert-warning">{{ session('warning') }}</div>
+                            @endif
+
+                            <form action="{{ route('staff.store_order') }}" method="POST">
+                                {{ csrf_field() }}
+                                <div class="row">
                                     <!-- Form Group (name)-->
                                     <div class="col-md-4">
                                         <label class="small mb-1" for="inputFirstName"
@@ -85,7 +93,7 @@
                                         <input
                                             class="form-control"
                                             id="inputFirstName"
-                                            type="email"
+                                            type="text"
                                             placeholder="Enter Phone No"
                                             name="phone"
                                         />
@@ -104,7 +112,7 @@
                                         <input
                                             class="form-control"
                                             id="inputFirstName"
-                                            type="email"
+                                            type="text"
                                             placeholder="Enter Address Info"
                                             name="address"
                                         />
@@ -156,51 +164,65 @@
                                         @enderror
                                     </div>
 
+
+                                </div>
+
+
+                                <div class="row">
+                                    <!-- Form fields go here (name, email, phone, etc.) -->
+                                    <!-- Search Input -->
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="inputFirstName"
-                                        >Search Items</label
-                                        >
+                                        <label class="small mb-1">Search Items</label>
                                         <input
                                             class="form-control"
-                                            id="inputFirstName"
                                             type="text"
                                             placeholder="Items"
+                                            v-model="searchQuery"
+                                            @input="filterItems"
                                         />
-                                        <br>
-
+                                        <ul v-if="filteredItems.length" class="list-group mt-2">
+                                            <li
+                                                class="list-group-item"
+                                                v-for="item in filteredItems"
+                                                :key="item.product_id"
+                                                @click="addItemToTable(item)"
+                                                style="cursor: pointer"
+                                            >
+                                                @{{ item.name }}
+                                            </li>
+                                        </ul>
                                     </div>
 
-
-                                    <div class="col-md-12">
-                                        <table style="border: 1px solid #0d6efd; width: 100%; text-align: center">
+                                    <!-- Items Table -->
+                                    <div class="col-md-12 mt-3">
+                                        <table class="table table-bordered text-center">
                                             <thead>
                                             <tr>
-                                                <td>
-                                                    Serial
-                                                </td>
-                                                <td>
-                                                    Item Name
-                                                </td>
-                                                <td>
-                                                    Item Quantity
-                                                </td>
-                                                <td>
-                                                    Item Cost
-                                                </td>
-                                                <td>
-                                                    Remove Item
-                                                </td>
+                                                <th>Serial</th>
+                                                <th>Item Name</th>
+                                                <th>Item Quantity</th>
+                                                <th>Item Cost</th>
+                                                <th>Remove Item</th>
                                             </tr>
                                             </thead>
-
                                             <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Laptop</td>
-                                                <td><input type="number" placeholder="quantity"></td>
-                                                <td>300</td>
+                                            <tr v-for="(item, index) in selectedItems" :key="item.inventory_id">
+                                                <td>@{{ index + 1 }}</td>
+                                                <td>@{{ item.name }}</td>
                                                 <td>
-                                                    <button class="btn btn-datatable btn-icon btn-transparent-dark">
+                                                    <input
+                                                        type="number"
+                                                        class="form-control"
+                                                        v-model.number="item.quantity"
+                                                        :max="item.maxQuantity"
+                                                        @input="updateTotalPrice"
+                                                        min="1"
+                                                    />
+                                                </td>
+                                                <td>@{{ item.price }}</td>
+                                                <td>
+                                                    <button class="btn btn-datatable btn-icon btn-transparent-dark"
+                                                            @click="removeItem(index)">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                              viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                              stroke-width="2" stroke-linecap="round"
@@ -215,14 +237,24 @@
                                                 </td>
                                             </tr>
                                             </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <td colspan="3" class="text-end"><strong>Total Price:</strong></td>
+                                                <td colspan="2">@{{ totalPrice }}/-</td>
+                                            </tr>
+                                            </tfoot>
                                         </table>
                                     </div>
-
                                 </div>
+
+                                <!-- Hidden Inputs for Form Submission -->
+                                <input type="hidden" name="items" :value="itemsForSubmission"/>
+                                <input type="hidden" name="items_ids" :value="itemIdsForSubmission"/>
+
+                                <!-- Submit Button -->
+                                <button type="submit" class="btn btn-primary mt-3">Submit</button>
                             </form>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -230,32 +262,77 @@
     </main>
 
     <script>
-        const {createApp} = Vue
+
+        const {createApp} = Vue;
 
         createApp({
             data() {
                 return {
-                    message: 'Hello Vue!'
-                }
+                    inventory: [], // Holds the API response
+                    searchQuery: '', // Search input value
+                    filteredItems: [], // Filtered items based on search
+                    selectedItems: [], // Items added to the table
+                    totalPrice: 0, // Total price of selected items
+                };
             },
-
+            computed: {
+                // JSON string for selected items
+                itemsForSubmission() {
+                    return JSON.stringify(this.selectedItems);
+                },
+                // JSON string for selected item IDs
+                itemIdsForSubmission() {
+                    return JSON.stringify(this.selectedItems.map(item => item.product_id));
+                },
+            },
             methods: {
-                inventoryData() {
-                    fetch('{{ route('inventory_api') }}')
-                        .then(response => {
-                            return response.json()
-                        }).then(data => {
-                        console.log(data)
-                    }).catch(error => {
+                async inventoryData() {
+                    try {
+                        const response = await fetch('{{ route('inventory_api') }}');
+                        const data = await response.json();
+                        this.inventory = data.data;
+                    } catch (error) {
                         console.error('Error fetching data:', error);
-                    });
-                }
-            },
+                    }
+                },
+                filterItems() {
+                    const query = this.searchQuery.toLowerCase();
+                    this.filteredItems = this.inventory.filter(item =>
+                        item.name.toLowerCase().includes(query)
+                    );
+                },
+                addItemToTable(item) {
+                    if (this.selectedItems.some(selected => selected.product_id === item.product_id)) {
+                        alert('Item already added!');
+                        return;
+                    }
 
+                    this.selectedItems.push({
+                        ...item,
+                        quantity: 1, // Default quantity
+                        maxQuantity: item.quantity, // Max quantity based on inventory
+                    });
+
+                    this.updateTotalPrice();
+
+                    this.searchQuery = '';
+                    this.filteredItems = [];
+                },
+                removeItem(index) {
+                    this.selectedItems.splice(index, 1);
+                    this.updateTotalPrice();
+                },
+                updateTotalPrice() {
+                    this.totalPrice = this.selectedItems.reduce((sum, item) => {
+                        return sum + item.price * item.quantity;
+                    }, 0);
+                },
+            },
             mounted() {
-                this.inventoryData()
-            }
-        }).mount('#app')
+                this.inventoryData();
+            },
+        }).mount('#app');
+
     </script>
 
 @endsection
