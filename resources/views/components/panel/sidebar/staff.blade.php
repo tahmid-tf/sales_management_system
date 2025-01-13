@@ -88,7 +88,7 @@
 
 {{-- ---------------------------------------------------- Staff Creating Order ---------------------------------------------------- --}}
 
-<div class="sidenav-menu-heading">Sells Management</div>
+<div class="sidenav-menu-heading">Sales Management</div>
 
 
 <a
@@ -100,7 +100,7 @@
     aria-controls="collapseCreateOrder"
 >
     <div class="nav-link-icon"><i data-feather="tool"></i></div>
-    Sells
+    Sales
     <div class="sidenav-collapse-arrow">
         <i class="fas fa-angle-down"></i>
     </div>

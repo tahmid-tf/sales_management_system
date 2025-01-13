@@ -84,7 +84,9 @@
                                                         <!-- Display item SKU -->
                                                         <td class="text-end fw-bold">{{ $item['quantity'] }}</td>
                                                         <!-- Display item quantity -->
-                                                        <td class="text-end fw-bold">{{ $item['price'] }}/-</td>
+                                                        <td class="text-end fw-bold">{{ $item['quantity'] * $item['price'] }}
+                                                            /-
+                                                        </td>
                                                         <!-- Display item price -->
                                                     </tr>
                                                 @endforeach

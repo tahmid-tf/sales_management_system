@@ -35,7 +35,20 @@
                         <div id="app" class="card-body">
 
 
-                            @if(session('success'))
+                            @php
+                                $warehouseAssignment = \App\Models\Sales\Warehouse_assign_to_staff::where('staff_id', auth()->id())->first();
+                            @endphp
+
+                            @if($warehouseAssignment && $warehouseAssignment->status == 'active')
+                                <!-- Content for active warehouse assignment -->
+                            @else
+                                <div class="alert alert-warning">
+                                    Warehouse not yet assigned or request manager for assigning
+                                </div>
+                            @endif
+
+
+                        @if(session('success'))
                                 <div class="alert alert-success">{{ session('success') }}</div>
                             @endif
 
@@ -219,7 +232,7 @@
                                                         min="1"
                                                     />
                                                 </td>
-                                                <td>@{{ item.price }}</td>
+                                                <td>@{{ (item.price * item.quantity).toFixed(2) }}</td>
                                                 <td>
                                                     <button class="btn btn-datatable btn-icon btn-transparent-dark"
                                                             @click="removeItem(index)">
@@ -276,9 +289,14 @@
                 };
             },
             computed: {
-                // JSON string for selected items
+                // JSON string for selected items, including dynamic cost
                 itemsForSubmission() {
-                    return JSON.stringify(this.selectedItems);
+                    return JSON.stringify(
+                        this.selectedItems.map(item => ({
+                            ...item,
+                            cost: (item.price * item.quantity).toFixed(2), // Add dynamic cost
+                        }))
+                    );
                 },
                 // JSON string for selected item IDs
                 itemIdsForSubmission() {

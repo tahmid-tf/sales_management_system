@@ -38,5 +38,10 @@ Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->group(func
     Route::get("staff_permission", [InitializeStuffController::class, 'index'])->name('staff_permission');
     Route::put("staff_permission/{staff_id}", [InitializeStuffController::class, 'permission_setup'])->name('staff_permission.update');
 
+    // -------------------------------- Sales - View Orders --------------------------------
+
+    Route::get('view_orders', [\App\Http\Controllers\Admin\Sales\SalesController::class, 'view_orders'])->name('admin.view_order.index');
+    Route::get('view_invoice/{id}', [\App\Http\Controllers\Admin\Sales\SalesController::class, 'view_invoice'])->name('admin.view_invoice.index');
+
 });
 

@@ -111,6 +111,36 @@
     </nav>
 </div>
 
+
+{{-- ---------------------------------------------------- Managers Sells Management ---------------------------------------------------- --}}
+
+<div class="sidenav-menu-heading">Sales Management</div>
+
+
+<a
+    class="nav-link collapsed"
+    href="javascript:void(0);"
+    data-bs-toggle="collapse"
+    data-bs-target="#collapseCreateOrder"
+    aria-expanded="false"
+    aria-controls="collapseCreateOrder"
+>
+    <div class="nav-link-icon"><i data-feather="tool"></i></div>
+    Sales
+    <div class="sidenav-collapse-arrow">
+        <i class="fas fa-angle-down"></i>
+    </div>
+</a>
+<div
+    class="collapse"
+    id="collapseCreateOrder"
+    data-bs-parent="#accordionSidenav"
+>
+    <nav class="sidenav-menu-nested nav">
+        <a class="nav-link" href="{{ route('manager.view_order.index') }}">Order List</a>
+    </nav>
+</div>
+
 {{-- ---------------------------------------------------- Account Settings ---------------------------------------------------- --}}
 
 <div class="sidenav-menu-heading">Profile</div>

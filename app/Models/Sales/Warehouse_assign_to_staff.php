@@ -26,6 +26,10 @@ class Warehouse_assign_to_staff extends Model
             return "Warehouse not yet assigned";
         }
 
+        if ($warehouse_assigned_state->status == 'inactive') {
+            return "Warehouse status is currently inactive";
+        }
+
         $warehouse = Warehouse::withTrashed()->where('id', $warehouse_assigned_state->warehouse_id)->orderBy('id', 'desc')->first()->name ?? 'Warehouse not found';
 
         if (!$warehouse) {

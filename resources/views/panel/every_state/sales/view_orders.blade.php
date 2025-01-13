@@ -60,7 +60,23 @@
                                         <td>{{ $order->phone }}</td>
                                         <td>{{ $order->status }}</td>
                                         <td>
-                                            <a class="btn btn-primary" href="{{ route('staff.view_invoice.index', $order->id) }}">Invoice</a>
+
+                                            @if(auth()->user()->user_role == "staff")
+
+                                                <a class="btn btn-primary"
+                                                   href="{{ route('staff.view_invoice.index', $order->id) }}">Invoice</a>
+
+                                            @elseif(auth()->user()->user_role == "manager")
+
+                                                <a class="btn btn-primary"
+                                                   href="{{ route('manager.view_invoice.index', $order->id) }}">Invoice</a>
+
+                                            @elseif(auth()->user()->user_role == "admin")
+
+                                                <a class="btn btn-primary"
+                                                   href="{{ route('admin.view_invoice.index', $order->id) }}">Invoice</a>
+
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

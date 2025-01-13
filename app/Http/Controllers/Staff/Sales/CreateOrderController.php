@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Staff\Sales;
 
 use App\Http\Controllers\Controller;
+use App\Models\Inventory\Inventory;
 use App\Models\OrderData;
 use App\Models\Sales\Warehouse_assign_to_staff;
 use App\Models\User;
@@ -106,6 +107,19 @@ class CreateOrderController extends Controller
         $order->total_amount = array_reduce(json_decode($validated['items'], true), function ($sum, $item) {
             return $sum + ($item['price'] * $item['quantity']);
         }, 0);
+
+
+// --------------------- deducting items from inventory
+
+//        $items = json_decode($order->items);
+//
+//        foreach ($items as $item) {
+//            $inventory_update = Inventory::withTrashed()->where('warehouse_id', $warehouse_id)->where('product_id', $item->product_id)->first();
+//            $inventory_update->quantity = $inventory_update->quantity - $item->quantity;
+//            $inventory_update->save();
+//        }
+
+// --------------------- saving order
 
         $order->save();
         session()->flash('success', 'Order created successfully and waiting for managers confirmation');

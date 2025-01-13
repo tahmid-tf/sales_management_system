@@ -28,4 +28,9 @@ Route::middleware(['auth', ManagerMiddleware::class])->prefix('manager')->group(
 
     Route::resource('assign_staff', WarehouseAssignToStaffController::class);
 
+    // -------------------------------- Sales - View Orders --------------------------------
+
+    Route::get('view_orders', [\App\Http\Controllers\Manager\Sales\SalesController::class, 'view_orders'])->name('manager.view_order.index');
+    Route::get('view_invoice/{id}', [\App\Http\Controllers\Manager\Sales\SalesController::class, 'view_invoice'])->name('manager.view_invoice.index');
+
 });
