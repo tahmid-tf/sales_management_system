@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Inventory\InventoryController;
 use App\Http\Controllers\Admin\Inventory\SupplierController;
 use App\Http\Controllers\Admin\Inventory\WareHouseController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\UserManagement\UserManagementController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\Admin\Staff\InitializeStuffController;
@@ -42,6 +43,11 @@ Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->group(func
 
     Route::get('view_orders', [\App\Http\Controllers\Admin\Sales\SalesController::class, 'view_orders'])->name('admin.view_order.index');
     Route::get('view_invoice/{id}', [\App\Http\Controllers\Admin\Sales\SalesController::class, 'view_invoice'])->name('admin.view_invoice.index');
+    Route::get('order_decision/{id}/{decision}', [\App\Http\Controllers\Admin\Sales\SalesController::class, 'order_decision'])->name('admin.order_decision');
+
+    // -------------------------------- Admin - User Management --------------------------------
+
+    Route::resource('user_management', UserManagementController::class);
 
 });
 

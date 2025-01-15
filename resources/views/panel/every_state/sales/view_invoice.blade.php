@@ -157,8 +157,30 @@
 
 
             <div class="row">
-                <div class="d-flex">
-                    <button class="btn btn-success print_button">Print Invoice</button>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <button class="btn btn-success print_button">Print Invoice</button>
+                    </div>
+
+
+                    @if(auth()->user()->user_role == 'admin')
+
+                        <div>
+                            <a href="{{ route('admin.order_decision', [$order_data->id, 'accept']) }}"
+                               class="btn btn-success">Accept</a>
+                            <a href="{{ route('admin.order_decision', [$order_data->id,'reject']) }}"
+                               class="btn btn-danger">Reject</a>
+                        </div>
+
+                    @elseif(auth()->user()->user_role == 'manager')
+                        <div>
+                            <a href="{{ route('manager.order_decision', [$order_data->id, 'accept']) }}"
+                               class="btn btn-success">Accept</a>
+                            <a href="{{ route('manager.order_decision', [$order_data->id,'reject']) }}"
+                               class="btn btn-danger">Reject</a>
+                        </div>
+                    @endif
+
                 </div>
             </div>
         </div>

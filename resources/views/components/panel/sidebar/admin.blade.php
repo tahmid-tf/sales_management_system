@@ -199,6 +199,34 @@
     </nav>
 </div>
 
+{{-- ---------------------------------------------------- Admins User Management ---------------------------------------------------- --}}
+
+<div class="sidenav-menu-heading">User Management</div>
+
+
+<a
+    class="nav-link collapsed"
+    href="javascript:void(0);"
+    data-bs-toggle="collapse"
+    data-bs-target="#collapseUserData"
+    aria-expanded="false"
+    aria-controls="collapseUserData"
+>
+    <div class="nav-link-icon"><i data-feather="tool"></i></div>
+    User Data
+    <div class="sidenav-collapse-arrow">
+        <i class="fas fa-angle-down"></i>
+    </div>
+</a>
+<div
+    class="collapse"
+    id="collapseUserData"
+    data-bs-parent="#accordionSidenav"
+>
+    <nav class="sidenav-menu-nested nav">
+        <a class="nav-link" href="{{ route('user_management.index') }}">Add and view Users</a>
+    </nav>
+</div>
 
 <div class="sidenav-menu-heading">Profile</div>
 <!-- Sidenav Link (Charts)-->
@@ -207,4 +235,11 @@
         <i data-feather="bar-chart"></i>
     </div>
     Account Settings
+</a>
+
+<a class="nav-link" href="/profile">
+    <div class="nav-link-icon">
+        <i data-feather="bar-chart"></i>
+    </div>
+    Update Password
 </a>

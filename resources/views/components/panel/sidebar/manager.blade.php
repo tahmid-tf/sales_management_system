@@ -151,3 +151,10 @@
     </div>
     Account Settings
 </a>
+
+<a class="nav-link" href="/profile">
+    <div class="nav-link-icon">
+        <i data-feather="bar-chart"></i>
+    </div>
+    Update Password
+</a>

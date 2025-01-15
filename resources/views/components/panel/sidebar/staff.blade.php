@@ -55,7 +55,6 @@
 </div>
 
 
-
 {{-- ---------------------------------------------------- Account Settings ---------------------------------------------------- --}}
 
 <div class="sidenav-menu-heading">Inventory Management</div>
@@ -83,7 +82,6 @@
         <a class="nav-link" href="{{ route('staff.inventory.index') }}">Update Inventory</a>
     </nav>
 </div>
-
 
 
 {{-- ---------------------------------------------------- Staff Creating Order ---------------------------------------------------- --}}
@@ -124,4 +122,11 @@
         <i data-feather="bar-chart"></i>
     </div>
     Account Settings
+</a>
+
+<a class="nav-link" href="/profile">
+    <div class="nav-link-icon">
+        <i data-feather="bar-chart"></i>
+    </div>
+    Update Password
 </a>

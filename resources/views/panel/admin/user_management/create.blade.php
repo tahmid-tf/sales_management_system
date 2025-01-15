@@ -4,19 +4,19 @@
 
     <main>
         <header
-                class="page-header page-header-compact page-header-light border-bottom bg-white mb-4"
+            class="page-header page-header-compact page-header-light border-bottom bg-white mb-4"
         >
             <div class="container-xl px-4">
                 <div class="page-header-content">
                     <div
-                            class="row align-items-center justify-content-between pt-3"
+                        class="row align-items-center justify-content-between pt-3"
                     >
                         <div class="col-auto mb-3">
                             <h1 class="page-header-title">
                                 <div class="page-header-icon">
                                     <i data-feather="user"></i>
                                 </div>
-                                Assigning Staffs to warehouse
+                                User Management
                             </h1>
                         </div>
                     </div>
@@ -30,22 +30,18 @@
                 <div class="col-xl-12">
                     <!-- Account details card-->
                     <div class="card mb-4">
-                        <div class="card-header">Assigning Staffs to warehouse</div>
+                        <div class="card-header">User Management</div>
 
                         {{-- ------------- Store profile form ------------- --}}
 
                         <div class="card-body">
 
 
-                            @if(session('success'))
-                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @if(session('message'))
+                                <div class="alert alert-success">{{ session('message') }}</div>
                             @endif
 
-                            @if(session('warning'))
-                                <div class="alert alert-warning">{{ session('warning') }}</div>
-                            @endif
-
-                            <form action="{{ route('assign_staff.store') }}" method="post"
+                            <form action="{{ route('user_management.store') }}" method="post"
                                   enctype="multipart/form-data">
 
                                 {{ csrf_field() }}
@@ -53,83 +49,77 @@
                                 <!-- Form Row-->
                                 <div class="row">
 
-                                    <!-- Form Group (Staff Info)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputFirstName"
-                                        >Staff Name</label
+                                        >Name</label
                                         >
-
-                                        <select class="form-select" name="staff_id">
-
-                                            @foreach($staffs as $staff)
-                                                <option value="{{ $staff->id }}">{{ $staff->name }}</option>
-                                            @endforeach
-
-                                        </select>
+                                        <input
+                                            class="form-control"
+                                            id="inputFirstName"
+                                            type="text"
+                                            placeholder="Enter Category Name"
+                                            name="name"
+                                        />
 
                                         <br>
-                                        @error('staff_id')
+                                        @error('name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputLastName"
+                                        >Email</label
+                                        >
+                                        <input
+                                            class="form-control"
+                                            id="email_form_id"
+                                            type="email"
+                                            placeholder="Enter email"
+                                            name="email"
+                                        />
+
+                                        <br>
+                                        @error('email')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
 
-                                    <!-- Form Group (Assigning to Warehouse)-->
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="inputFirstName"
-                                        >Assigning to Warehouse</label
+                                        <label class="small mb-1" for="inputLastName"
+                                        >Password</label
                                         >
-
-                                        <select class="form-select" name="warehouse_id">
-
-                                            @foreach($warehouses as $warehouse)
-                                                <option value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
-                                            @endforeach
-
-                                        </select>
+                                        <input
+                                            class="form-control"
+                                            id="password_form_id"
+                                            type="password"
+                                            placeholder="Enter password"
+                                            name="password"
+                                            value=""
+                                        />
 
                                         <br>
-                                        @error('warehouse_id')
+                                        @error('password')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
 
-
-                                    <!-- Form Group (Manager ID)-->
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="inputFirstName"
-                                        >Assigned by Manager</label
+                                        <label class="small mb-1" for="inputLastName"
+                                        >User Role</label
                                         >
 
-                                        <select class="form-select" name="manager_id">
-                                            <option value="{{ auth()->id() }}">{{ auth()->user()->name ?? '' }}</option>
+                                        <select class="form-select" name="user_role">
+                                            <option value="manager">Manager</option>
+                                            <option value="staff">Staff</option>
                                         </select>
 
                                         <br>
-                                        @error('manager_id')
+                                        @error('user_role')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-
-
-                                    <!-- Form Group (Admin ID)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="inputFirstName"
-                                        >Permitted By Admin</label
-                                        >
-
-                                        <select class="form-select" name="admin_id">
-
-                                            @foreach($admins as $admin)
-                                                <option value="{{ $admin->id }}">{{ $admin->name }}</option>
-                                            @endforeach
-                                        </select>
-
-                                        <br>
-                                        @error('admin_id')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
                                 </div>
 
 
@@ -153,7 +143,7 @@
                 <div class="col-xl-12">
                     <!-- Account details card-->
                     <div class="card mb-4">
-                        <div class="card-header">View All Staffs</div>
+                        <div class="card-header">View Users</div>
 
 
                         {{-- --------------------------- table --------------------------- --}}
@@ -174,26 +164,33 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Assigned Warehouse</th>
-                                    <th>Verified by Admin</th>
-                                    <th>Verified by Manager</th>
-                                    <th>Status</th>
+                                    <th>User Role</th>
+                                    <th>Account Status</th>
+                                    <th>Freeze / Unfreeze Account</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                @foreach($staffs as $staff)
+                                @foreach($users as $user)
+
                                     <tr>
-                                        <td>{{ $staff->name ?? '' }}</td>
-                                        <td>{{ $staff->email ?? '' }}</td>
-                                        <td>{{ \App\Models\UserProfile::where('user_id', $staff->id)->first()->phone ?? 'Not Found' }}</td>
-                                        <td>{{ \App\Models\Sales\Warehouse_assign_to_staff::assigned_warehouse($staff->id) ?? 'Not Found' }}</td>
-                                        <td>{{ \App\Models\User::find(\App\Models\Sales\Warehouse_assign_to_staff::where('staff_id',$staff->id)->first()->admin_id)->name ?? 'Not Found' }}</td>
-                                        <td>{{ \App\Models\User::find(\App\Models\Sales\Warehouse_assign_to_staff::where('staff_id',$staff->id)->first()->manager_id)->name ?? 'Not Found' }}</td>
-                                        <td>{{ \App\Models\Sales\Warehouse_assign_to_staff::staff_status($staff->id) ?? 'Not Found' }}</td>
+                                        <td>{{ $user->name ?? '' }}</td>
+                                        <td>{{ $user->email ?? '' }}</td>
+                                        <td>{{ $user->user_role ?? '' }}</td>
+                                        <td>{{ ucfirst($user->account_status) ?? '' }}</td>
+                                        <td>
+                                            <form action="{{ route('user_management.update', $user->id) }}"
+                                                  method="post">
+                                                {{ csrf_field() }}
+                                                @method('put')
+                                                <input type="submit"
+                                                       class="btn {{ $user->account_status == 'active' ? 'btn-danger' : 'btn-success' }} delete-btn"
+                                                       value="{{ $user->account_status == 'inactive' ? 'Active' : 'Inactive' }}">
+                                            </form>
+                                        </td>
                                     </tr>
+
                                 @endforeach
 
                                 </tbody>

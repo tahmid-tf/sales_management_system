@@ -53,6 +53,8 @@
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Assigned Warehouse</th>
+                                    <th>Verified by Admin</th>
+                                    <th>Verified by Manager</th>
                                     <th>Status</th>
                                     <th>Permission</th>
 
@@ -66,6 +68,8 @@
                                         <td>{{ \App\Models\User::where('id', $staff->staff_id)->first()->email ?? "Email not found" }}</td>
                                         <td>{{ \App\Models\UserProfile::where('user_id', $staff->staff_id)->first()->phone ?? "Profile not created"  }}</td>
                                         <td>{{ \App\Models\Inventory\Warehouse::withTrashed()->where('id',$staff->warehouse_id)->first()->name ?? "Warehouse not found" }}</td>
+                                        <td>{{  \App\Models\User::where('id', $staff->admin_id)->first()->name ?? "Name not found" }}</td>
+                                        <td>{{  \App\Models\User::where('id', $staff->manager_id)->first()->name ?? "Name not found" }}</td>
                                         <td>{{ ucfirst($staff->status) ?? "Status not found" }}</td>
                                         <td>
                                             <form action="{{ route('staff_permission.update', $staff->staff_id) }}"

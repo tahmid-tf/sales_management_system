@@ -34,8 +34,6 @@ class CreateOrderController extends Controller
 
     public function staff_inventory_api()
     {
-
-
         $warehouse_id = Warehouse_assign_to_staff::where('staff_id', auth()->id())->first()->warehouse_id;
 
         if (!$warehouse_id) {
@@ -107,17 +105,6 @@ class CreateOrderController extends Controller
         $order->total_amount = array_reduce(json_decode($validated['items'], true), function ($sum, $item) {
             return $sum + ($item['price'] * $item['quantity']);
         }, 0);
-
-
-// --------------------- deducting items from inventory
-
-//        $items = json_decode($order->items);
-//
-//        foreach ($items as $item) {
-//            $inventory_update = Inventory::withTrashed()->where('warehouse_id', $warehouse_id)->where('product_id', $item->product_id)->first();
-//            $inventory_update->quantity = $inventory_update->quantity - $item->quantity;
-//            $inventory_update->save();
-//        }
 
 // --------------------- saving order
 

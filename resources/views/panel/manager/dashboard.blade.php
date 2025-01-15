@@ -21,21 +21,6 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-xl-auto mt-4">
-                            <div
-                                class="input-group input-group-joined border-0"
-                                style="width: 16.5rem"
-                            >
-                      <span class="input-group-text"
-                      ><i class="text-primary" data-feather="calendar"></i
-                          ></span>
-                                <input
-                                    class="form-control ps-0 pointer"
-                                    id="litepickerRangePlugin"
-                                    placeholder="Select date range..."
-                                />
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -70,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xxl-4 col-xl-6 mb-4">
+                <div class="col-xxl-8 col-xl-8 mb-4">
                     <div class="card card-header-actions h-100">
                         <div class="card-header">
                             Recent Activity
@@ -224,139 +209,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xxl-4 col-xl-6 mb-4">
-                    <div class="card card-header-actions h-100">
-                        <div class="card-header">
-                            Progress Tracker
-                            <div class="dropdown no-caret">
-                                <button
-                                    class="btn btn-transparent-dark btn-icon dropdown-toggle"
-                                    id="dropdownMenuButton"
-                                    type="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                >
-                                    <i
-                                        class="text-gray-500"
-                                        data-feather="more-vertical"
-                                    ></i>
-                                </button>
-                                <div
-                                    class="dropdown-menu dropdown-menu-end animated--fade-in-up"
-                                    aria-labelledby="dropdownMenuButton"
-                                >
-                                    <a class="dropdown-item" href="#!">
-                                        <div class="dropdown-item-icon">
-                                            <i class="text-gray-500" data-feather="list"></i>
-                                        </div>
-                                        Manage Tasks
-                                    </a>
-                                    <a class="dropdown-item" href="#!">
-                                        <div class="dropdown-item-icon">
-                                            <i
-                                                class="text-gray-500"
-                                                data-feather="plus-circle"
-                                            ></i>
-                                        </div>
-                                        Add New Task
-                                    </a>
-                                    <a class="dropdown-item" href="#!">
-                                        <div class="dropdown-item-icon">
-                                            <i
-                                                class="text-gray-500"
-                                                data-feather="minus-circle"
-                                            ></i>
-                                        </div>
-                                        Delete Tasks
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h4 class="small">
-                                Server Migration
-                                <span class="float-end fw-bold">20%</span>
-                            </h4>
-                            <div class="progress mb-4">
-                                <div
-                                    class="progress-bar bg-danger"
-                                    role="progressbar"
-                                    style="width: 20%"
-                                    aria-valuenow="20"
-                                    aria-valuemin="0"
-                                    aria-valuemax="100"
-                                ></div>
-                            </div>
-                            <h4 class="small">
-                                Sales Tracking
-                                <span class="float-end fw-bold">40%</span>
-                            </h4>
-                            <div class="progress mb-4">
-                                <div
-                                    class="progress-bar bg-warning"
-                                    role="progressbar"
-                                    style="width: 40%"
-                                    aria-valuenow="40"
-                                    aria-valuemin="0"
-                                    aria-valuemax="100"
-                                ></div>
-                            </div>
-                            <h4 class="small">
-                                Customer Database
-                                <span class="float-end fw-bold">60%</span>
-                            </h4>
-                            <div class="progress mb-4">
-                                <div
-                                    class="progress-bar"
-                                    role="progressbar"
-                                    style="width: 60%"
-                                    aria-valuenow="60"
-                                    aria-valuemin="0"
-                                    aria-valuemax="100"
-                                ></div>
-                            </div>
-                            <h4 class="small">
-                                Payout Details
-                                <span class="float-end fw-bold">80%</span>
-                            </h4>
-                            <div class="progress mb-4">
-                                <div
-                                    class="progress-bar bg-info"
-                                    role="progressbar"
-                                    style="width: 80%"
-                                    aria-valuenow="80"
-                                    aria-valuemin="0"
-                                    aria-valuemax="100"
-                                ></div>
-                            </div>
-                            <h4 class="small">
-                                Account Setup
-                                <span class="float-end fw-bold">Complete!</span>
-                            </h4>
-                            <div class="progress">
-                                <div
-                                    class="progress-bar bg-success"
-                                    role="progressbar"
-                                    style="width: 100%"
-                                    aria-valuenow="100"
-                                    aria-valuemin="0"
-                                    aria-valuemax="100"
-                                ></div>
-                            </div>
-                        </div>
-                        <div class="card-footer position-relative">
-                            <div
-                                class="d-flex align-items-center justify-content-between small text-body"
-                            >
-                                <a class="stretched-link text-body" href="#!"
-                                >Visit Task Center</a
-                                >
-                                <i class="fas fa-angle-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <!-- Example Colored Cards for Dashboard Demo-->
             <div class="row">
@@ -475,89 +328,8 @@
                     </div>
                 </div>
             </div>
-            <!-- Example Charts for Dashboard Demo-->
-            <div class="row">
-                <div class="col-xl-6 mb-4">
-                    <div class="card card-header-actions h-100">
-                        <div class="card-header">
-                            Earnings Breakdown
-                            <div class="dropdown no-caret">
-                                <button
-                                    class="btn btn-transparent-dark btn-icon dropdown-toggle"
-                                    id="areaChartDropdownExample"
-                                    type="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                >
-                                    <i
-                                        class="text-gray-500"
-                                        data-feather="more-vertical"
-                                    ></i>
-                                </button>
-                                <div
-                                    class="dropdown-menu dropdown-menu-end animated--fade-in-up"
-                                    aria-labelledby="areaChartDropdownExample"
-                                >
-                                    <a class="dropdown-item" href="#!">Last 12 Months</a>
-                                    <a class="dropdown-item" href="#!">Last 30 Days</a>
-                                    <a class="dropdown-item" href="#!">Last 7 Days</a>
-                                    <a class="dropdown-item" href="#!">This Month</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#!">Custom Range</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-area">
-                                <canvas
-                                    id="myAreaChart"
-                                    width="100%"
-                                    height="30"
-                                ></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 mb-4">
-                    <div class="card card-header-actions h-100">
-                        <div class="card-header">
-                            Monthly Revenue
-                            <div class="dropdown no-caret">
-                                <button
-                                    class="btn btn-transparent-dark btn-icon dropdown-toggle"
-                                    id="areaChartDropdownExample"
-                                    type="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                >
-                                    <i
-                                        class="text-gray-500"
-                                        data-feather="more-vertical"
-                                    ></i>
-                                </button>
-                                <div
-                                    class="dropdown-menu dropdown-menu-end animated--fade-in-up"
-                                    aria-labelledby="areaChartDropdownExample"
-                                >
-                                    <a class="dropdown-item" href="#!">Last 12 Months</a>
-                                    <a class="dropdown-item" href="#!">Last 30 Days</a>
-                                    <a class="dropdown-item" href="#!">Last 7 Days</a>
-                                    <a class="dropdown-item" href="#!">This Month</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#!">Custom Range</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-bar">
-                                <canvas id="myBarChart" width="100%" height="30"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
             <!-- Example DataTable for Dashboard Demo-->
             <div class="card mb-4">
                 <div class="card-header">Personnel Management</div>

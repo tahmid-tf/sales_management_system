@@ -7,6 +7,10 @@ use App\Http\Controllers\PermissionController;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Staff\Sales\CreateOrderController;
 
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\ManagerMiddleware;
+use App\Http\Middleware\StaffMiddleware;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -14,12 +18,17 @@ Route::get('/', function () {
 // ---------------------------- Inventory API ----------------------------
 
 Route::middleware('auth')->group(function () {
-    Route::get('inventory_api', [CreateOrderController::class,'staff_inventory_api'])->name('inventory_api');
+    Route::get('inventory_api', [CreateOrderController::class, 'staff_inventory_api'])->name('inventory_api');
 });
 
 // ----------------------------------------------- panel route redirects -----------------------------------------------
 
 Route::get('/dashboard', [PermissionController::class, 'permission'])->middleware(['auth'])->name('dashboard');
+Route::get('/admin_dashboard', [PermissionController::class, 'admin_dashboard'])->middleware(['auth', AdminMiddleware::class])->name('admin.dashboard');
+Route::get('/manager_dashboard', [PermissionController::class, 'manager_dashboard'])->middleware(['auth', ManagerMiddleware::class])->name('manager.dashboard');
+Route::get('/staff_dashboard', [PermissionController::class, 'staff_dashboard'])->middleware(['auth', StaffMiddleware::class])->name('staff.dashboard');
+
+
 Route::get('/logout', [PermissionController::class, 'logout'])->name('log_out')->middleware(['auth']);
 
 // ----------------------------------------------- panel route redirects -----------------------------------------------
