@@ -196,6 +196,7 @@
 >
     <nav class="sidenav-menu-nested nav">
         <a class="nav-link" href="{{ route('admin.view_order.index') }}">Order List</a>
+        <a class="nav-link" href="{{ route('admin_order_data_export') }}">Export Sales Data</a>
     </nav>
 </div>
 

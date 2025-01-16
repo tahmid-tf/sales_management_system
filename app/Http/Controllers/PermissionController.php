@@ -43,24 +43,59 @@ class PermissionController extends Controller
         $users = User::all();
 
         $order_count = OrderData::count();
-        $pending_order_count = OrderData::where('status','pending')->count();
-        $accepted_order_count = OrderData::where('status','accepted')->count();
-        $rejected_order_count = OrderData::where('status','rejected')->count();
+        $pending_order_count = OrderData::where('status', 'pending')->count();
+        $accepted_order_count = OrderData::where('status', 'accepted')->count();
+        $rejected_order_count = OrderData::where('status', 'rejected')->count();
 
-        $total_sold = OrderData::where('status','accepted')->sum('total_amount');
+        $total_sold = OrderData::where('status', 'accepted')->sum('total_amount');
 
-        return view('panel.admin.dashboard', compact('categories_count','products_count','suppliers_count','warehouses_count','inventory_count','users_count',
-        'order_count','pending_order_count','accepted_order_count','rejected_order_count','total_sold','users'));
+        return view('panel.admin.dashboard', compact('categories_count', 'products_count', 'suppliers_count', 'warehouses_count', 'inventory_count', 'users_count',
+            'order_count', 'pending_order_count', 'accepted_order_count', 'rejected_order_count', 'total_sold', 'users'));
     }
 
     public function manager_dashboard()
     {
-        return view('panel.manager.dashboard');
+
+        $categories_count = Category::count();
+        $products_count = Product::count();
+        $suppliers_count = Supplier::count();
+        $warehouses_count = Warehouse::count();
+        $inventory_count = Inventory::count();
+        $users_count = User::count();
+
+        $users = User::all();
+
+        $order_count = OrderData::count();
+        $pending_order_count = OrderData::where('status', 'pending')->count();
+        $accepted_order_count = OrderData::where('status', 'accepted')->count();
+        $rejected_order_count = OrderData::where('status', 'rejected')->count();
+
+        $total_sold = OrderData::where('status', 'accepted')->sum('total_amount');
+
+        return view('panel.manager.dashboard', compact('categories_count', 'products_count', 'suppliers_count', 'warehouses_count', 'inventory_count', 'users_count',
+            'order_count', 'pending_order_count', 'accepted_order_count', 'rejected_order_count', 'total_sold', 'users'));
     }
 
     public function staff_dashboard()
     {
-        return view('panel.staff.dashboard');
+
+        $categories_count = Category::count();
+        $products_count = Product::count();
+        $suppliers_count = Supplier::count();
+        $warehouses_count = Warehouse::count();
+        $inventory_count = Inventory::count();
+
+
+        $order_count = OrderData::where('staff_id', auth()->id())->count();
+        $pending_order_count = OrderData::where('status', 'pending')->where('staff_id', auth()->id())->count();
+        $accepted_order_count = OrderData::where('status', 'accepted')->where('staff_id', auth()->id())->count();
+        $rejected_order_count = OrderData::where('status', 'rejected')->where('staff_id', auth()->id())->count();
+
+        $total_sold = OrderData::where('status', 'accepted')->where('staff_id', auth()->id())->sum('total_amount');
+
+
+        return view('panel.staff.dashboard', compact('categories_count', 'products_count', 'suppliers_count', 'warehouses_count', 'inventory_count',
+            'order_count', 'pending_order_count', 'accepted_order_count', 'rejected_order_count', 'total_sold'));
     }
 
 

@@ -9,9 +9,18 @@ use App\Http\Controllers\Admin\UserManagement\UserManagementController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\Admin\Staff\InitializeStuffController;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\OrderDataExport;
 
 
 Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->group(function () {
+
+    // --------------------------- Order Data Export ---------------------------
+
+    Route::get('order_data_export', function () {
+
+        return Excel::download(new OrderDataExport, "sales_data_export.xlsx");
+    })->name('admin_order_data_export');
 
 // -------------------------------- Create Categories --------------------------------
 
