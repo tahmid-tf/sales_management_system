@@ -12,7 +12,7 @@ use App\Http\Middleware\ManagerMiddleware;
 use App\Http\Middleware\StaffMiddleware;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('dashboard'));
 });
 
 // ---------------------------- Inventory API ----------------------------
