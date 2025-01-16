@@ -1,13 +1,13 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Redirect all HTTP traffic to HTTPS
+    # Redirect HTTP to HTTPS (if needed)
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-    # Ensure requests are routed to the public folder
+    # Redirect all requests to the public folder
     RewriteCond %{REQUEST_URI} !^/public/
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ /public/$1 [L,QSA]
+    RewriteRule ^(.*)$ /public/index.php [L]
 </IfModule>
