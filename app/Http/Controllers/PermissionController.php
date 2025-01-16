@@ -49,8 +49,10 @@ class PermissionController extends Controller
 
         $total_sold = OrderData::where('status', 'accepted')->sum('total_amount');
 
+        $order_data = OrderData::orderBy('id', 'desc')->take(7)->get();
+
         return view('panel.admin.dashboard', compact('categories_count', 'products_count', 'suppliers_count', 'warehouses_count', 'inventory_count', 'users_count',
-            'order_count', 'pending_order_count', 'accepted_order_count', 'rejected_order_count', 'total_sold', 'users'));
+            'order_count', 'pending_order_count', 'accepted_order_count', 'rejected_order_count', 'total_sold', 'users', 'order_data'));
     }
 
     public function manager_dashboard()

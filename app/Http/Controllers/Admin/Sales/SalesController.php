@@ -11,7 +11,7 @@ class SalesController extends Controller
 {
     public function view_orders()
     {
-        $orders = OrderData::select('id', 'name', 'email', 'phone', 'status')->get();
+        $orders = OrderData::select('id', 'name', 'email', 'phone', 'status','order_date')->get();
         return view('panel.every_state.sales.view_orders', compact('orders'));
     }
 

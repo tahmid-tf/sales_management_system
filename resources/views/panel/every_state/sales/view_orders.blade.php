@@ -45,24 +45,30 @@
                             <table id="datatablesSimple">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>Serial</th>
+                                    <th>Order ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Status</th>
+                                    <th>Order Date</th>
                                     <th>Invoice</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
 
+                                <?php $id = 0; ?>
+
                                 @foreach($orders as $order)
                                     <tr>
-                                        <td>{{ $order->id }}</td>
+                                        <td>{{ $id+=1 }}</td>
+                                        <td>#{{ $order->id }}</td>
                                         <td>{{ $order->name }}</td>
                                         <td>{{ $order->email }}</td>
                                         <td>{{ $order->phone }}</td>
                                         <td>{{ $order->status }}</td>
+                                        <td>{{ $order->order_date }}</td>
                                         <td>
 
                                             @if(auth()->user()->user_role == "staff")

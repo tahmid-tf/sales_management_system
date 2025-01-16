@@ -17,10 +17,22 @@
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
 
-    <link
-        href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
-        rel="stylesheet"
-    />
+
+
+
+
+
+{{--    <link--}}
+{{--        href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"--}}
+{{--        rel="stylesheet"--}}
+{{--    />--}}
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css">
+
+
+
     <link
         href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css"
         rel="stylesheet"
@@ -461,11 +473,41 @@
 ></script>
 <script src="{{ asset('assets/demo/chart-area-demo.js') }}"></script>
 <script src="{{ asset('assets/demo/chart-bar-demo.js') }}"></script>
-<script
-    src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
-    crossorigin="anonymous"
-></script>
-<script src="{{ asset('js/datatables/datatables-simple-demo.js') }}"></script>
+
+
+
+{{--<script--}}
+{{--    src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"--}}
+{{--    crossorigin="anonymous"--}}
+{{--></script>--}}
+
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        // $('#example').DataTable();
+
+        var table = $('#datatablesSimple').DataTable({
+            rowReorder: {
+                selector: 'td:nth-child(2)'
+            },
+            responsive: true
+        });
+    });
+</script>
+
+
+{{--<script src="{{ asset('js/datatables/datatables-simple-demo.js') }}"></script>--}}
+
+
+
+
+
+
+
 <script
     src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js"
     crossorigin="anonymous"
