@@ -44,4 +44,9 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+
+    <br>
+    <p>For credentials and readme files, please visit here</p>
+    <a href="https://github.com/tahmid-tf/sales_management_system/blob/master/README.md" style="color: blue">Readme file</a>
+    </x-guest-layout>
+
