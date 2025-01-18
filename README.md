@@ -7,60 +7,113 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# Inventory and Sales Management System (ERP)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The **Inventory and Sales Management System** is a robust ERP solution built using the Laravel framework. It provides tools for efficiently managing users, products, inventory, and sales with role-based access control and an intuitive dashboard.
+
+---
+
+## 📚 About Laravel
+
+Laravel is a web application framework with expressive, elegant syntax. It takes the pain out of development by easing common tasks used in web projects, such as:
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
+- [Expressive database ORM](https://laravel.com/docs/eloquent).
 - [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+To learn more, visit the [official documentation](https://laravel.com/docs).
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠️ About the Project
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+The **Inventory and Sales Management System** is designed to streamline the inventory and sales processes for businesses. Built on Laravel and modern frontend technologies, it is both user-friendly and highly scalable.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 🔑 Credentials
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Use the following credentials to explore the system's different roles:
 
-### Premium Partners
+### 1. Admin
+- **Email**: tahmid.tf1@gmail.com
+- **Password**: 12345678
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 2. Manager
+- **Email**: tahmid.tf2@gmail.com
+- **Password**: 12345678
 
-## Contributing
+### 3. Staff
+- **Email**: tahmid.tf3@gmail.com
+- **Password**: 12345678
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 💻 Technology Stack
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Frontend:
+- Laravel Blade template engine
+- Vue.js
+- jQuery
 
-## Security Vulnerabilities
+### Backend:
+- Laravel Framework [v.11.0]
+- PHP 8
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Database:
+- MySQL
 
-## License
+### Server:
+- AWS Lightsail VPS Instance
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## ✨ Features
+
+### User Management:
+- Role-based access control (Admin, Manager, Staff).
+- Profile management for all users.
+
+### Product Management:
+- Add, edit, and delete products.
+- Organize products into categories and tags.
+- Stock tracking for products.
+
+### Inventory Management:
+- Record purchases and supplier information.
+- Adjust stock levels as needed.
+
+### Sales Management:
+- Create invoices and record sales.
+- View order history with detailed invoices.
+
+### Custom Dashboard:
+- Visualize key data such as:
+    - Selling products.
+    - Total number of products.
+    - Total sales and recent sales activities.
+
+---
+
+## 🚀 How to Install and Run
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/your-repo/inventory-sales-management.git
+   cd inventory-sales-management
+
+2. **Setup Environment**
+   ````
+   cp .env.example .env
+   composer update
+   
+3. **Database Setup**
+    ````
+   Import the database file, it will be found from 
+   project_root/database_files/erp_management.sql
+
+4. **Node.js Setup and running the project**
+    ````
+   npm install && npm run dev
+   php artisan serve
